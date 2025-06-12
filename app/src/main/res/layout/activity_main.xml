@@ -27,10 +27,17 @@
             android:inputType="phone" />
 
         <Button
-            android:id="@+id/addContactBtn"
+            android:id="@+id/addSingle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add Contact" />
+            android:text="Single add" />
+
+        <Button
+            android:id="@+id/addContactsMultiple"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Multiple add" />
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

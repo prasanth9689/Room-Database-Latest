@@ -32,24 +32,38 @@ class MainActivity : AppCompatActivity() {
         val repository = ContactRepository(contactDao)
         viewModel = ViewModelProvider(this, ContactViewModelFactory(repository))[ContactViewModel::class.java]
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        viewModel.deleteAllContacts()
+        onClick()
+
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
 
         lifecycleScope.launch {
             viewModel.contacts.collectLatest { contacts ->
                 adapter = ContactAdapter(contacts)
-                recyclerView.adapter = adapter
+                binding.recyclerView.adapter = adapter
             }
         }
-
         viewModel.getAllContacts()
+    }
 
-        val contactList = listOf(
-            Contact(firstName = "Prasanth 2", phoneNumber = "1234567890"),
-            Contact(firstName = "Akila 2", phoneNumber = "2345678901"),
-        )
+    private fun onClick() {
+        binding.addContactsMultiple.setOnClickListener {
+            val contactList = listOf(
+                Contact(firstName = "Prasanth 66", phoneNumber = "1234567890"),
+                Contact(firstName = "Akila 2", phoneNumber = "2345678901"),
+            )
+            viewModel.insertContact(contactList)
+            viewModel.getAllContacts()
+        }
 
-        viewModel.insertContact(contactList)
+        binding.addSingle.setOnClickListener {
+
+            val firstName = binding.inputName.text.toString()
+            val phoneNumber = binding.inputPhone.text.toString()
+            val contact = Contact(firstName = firstName, phoneNumber = phoneNumber)
+            viewModel.insertContact(listOf(contact))
+            viewModel.getAllContacts()
+        }
     }
 }
 

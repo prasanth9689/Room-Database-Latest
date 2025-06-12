@@ -19,4 +19,11 @@ class ContactViewModel(private val repository: ContactRepository) : ViewModel() 
     fun getAllContacts() = viewModelScope.launch {
         _contacts.value = repository.getAllContacts()
     }
+
+    fun deleteAllContacts() {
+        viewModelScope.launch {
+            repository.deleteAllContacts()
+        }
+    }
+
 }
