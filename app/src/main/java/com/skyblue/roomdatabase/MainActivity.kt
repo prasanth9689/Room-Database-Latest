@@ -8,7 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
+import com.skyblue.roomdatabase.adapter.ContactAdapter
 import com.skyblue.roomdatabase.databinding.ActivityMainBinding
+import com.skyblue.roomdatabase.model.Contact
+import com.skyblue.roomdatabase.repository.ContactRepository
+import com.skyblue.roomdatabase.room.AppDatabase
+import com.skyblue.roomdatabase.viewmodel.ContactViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -39,9 +44,12 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.getAllContacts()
 
-        // Insert contact example
-        val contact = Contact(0, "John Doe", "1234567890")
-        viewModel.insertContact(contact)
+        val contactList = listOf(
+            Contact(firstName = "Prasanth 2", phoneNumber = "1234567890"),
+            Contact(firstName = "Akila 2", phoneNumber = "2345678901"),
+        )
+
+        viewModel.insertContact(contactList)
     }
 }
 

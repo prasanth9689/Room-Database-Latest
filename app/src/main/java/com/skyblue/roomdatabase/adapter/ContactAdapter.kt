@@ -1,10 +1,11 @@
-package com.skyblue.roomdatabase
+package com.skyblue.roomdatabase.adapter
 
-// ContactAdapter.kt
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.skyblue.roomdatabase.R
+import com.skyblue.roomdatabase.model.Contact
 
 class ContactAdapter(private val contacts: List<Contact>) : RecyclerView.Adapter<ContactViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
